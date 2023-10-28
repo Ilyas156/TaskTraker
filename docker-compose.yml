@@ -15,11 +15,11 @@ services:
             - "POSTGRES_USER=${DB_USERNAME}"
             - "POSTGRES_DB=${DB_DATABASE}"
         ports:
-            - "5438:5432"
+            - "${DB_PORT}:5432"
     redis:
         image: redis:7.0
         ports:
-            - "63791:6379"
+            - "${REDIS_PORT}:6379"
     nginx:
         build:
             context: ./
