@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Task;
 
 use App\Entity\Task\Task;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\Task\CreateTaskRequest;
+use App\Http\Requests\Task\UpdateTaskRequest;
 use App\UseCases\Task\TaskService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

@@ -6,8 +6,8 @@ use App\DTO\Task\CreateTaskDTO;
 use App\DTO\Task\UpdateTaskDTO;
 use App\Entity\Task\Task;
 use App\Enums\Task\TaskStatusEnum;
-use App\Http\Requests\CreateTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\Task\CreateTaskRequest;
+use App\Http\Requests\Task\UpdateTaskRequest;
 
 final class TaskService
 {
