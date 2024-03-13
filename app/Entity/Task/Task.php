@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Entity\Task;
 
-use App\Http\Requests\CreateTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\DTO\Task\CreateTaskDTO;
+use App\DTO\Task\UpdateTaskDTO;
+use App\Entity\User\User;
+use App\Enums\Task\TaskStatusEnum;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,11 +22,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property DateTime $created_at
  * @mixin Builder
  **/
-class Task extends Model
+final class Task extends Model
 {
     use HasFactory;
 
     protected $table = 'task';
+
+    protected $guarded = ['id'];
 
     const UPDATED_AT = null;
 
@@ -37,25 +41,25 @@ class Task extends Model
         'created_at'
     ];
 
-    public static function new(CreateTaskRequest $request)
+    public static function new(CreateTaskDTO $taskDTO): self
     {
         return self::create([
-            'user_id' => 1,
-            'title' => $request['title'],
-            'description' => $request['description'],
-            'category' => $request['category'],
-            'status' => (int)$request['status'],
+            'user_id' => $taskDTO->userId,
+            'title' => $taskDTO->title,
+            'description' => $taskDTO->description,
+            'category' => $taskDTO->category,
+            'status' => TaskStatusEnum::NEW->value,
             'created_at' => date('Y-m-d H:i:s')
         ]);
     }
 
-    public function edit(UpdateTaskRequest $request): void
+    public function edit(UpdateTaskDTO $taskDTO): void
     {
         $this->update([
-            'title' => $request['title'],
-            'description' => $request['description'],
-            'category' => $request['category'],
-            'status' => (int)$request['status'],
+            'title' => $taskDTO->title,
+            'description' => $taskDTO->description,
+            'category' => $taskDTO->category,
+            'status' => $taskDTO->status->value,
         ]);
     }
 

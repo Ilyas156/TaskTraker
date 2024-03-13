@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Task\TaskController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('tasks', TaskController::class)->only(['index', 'show', 'create', 'store', 'destroy']);
+
+Auth::routes();

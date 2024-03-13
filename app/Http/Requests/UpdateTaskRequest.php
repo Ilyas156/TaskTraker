@@ -13,13 +13,11 @@ class UpdateTaskRequest extends FormRequest
      *      description: string,
      *      category: string,
      *      status: string,
-     *      id: string
      *  }|string>
      */
     public function rules(): array
     {
         return [
-            'id' => 'required|integer',
             'title' => 'required|max:255',
             'description' => 'required|max: 255',
             'category' => 'required|max: 255',
